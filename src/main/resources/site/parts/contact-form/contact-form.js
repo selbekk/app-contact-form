@@ -1,5 +1,6 @@
 var portal = require('/lib/xp/portal');
 var thymeleaf = require('/lib/xp/thymeleaf');
+var ensureArray = require('/lib/array-util').ensureArray;
 
 exports.get = function() {
 
@@ -11,10 +12,12 @@ exports.get = function() {
         fields: config['form-fields'] || [],
         required: config.required,
         labelLayout: config['label-layout'],
-        emails: (config['email-recipients'] || []).join(','),
+        emails: ensureArray(config['email-recipients']).join(','),
         submitButton: config['submit-button'],
         successHtml: config['success-message']
     };
+
+    log.info(JSON.stringify(model, null, 4));
 
     return {
         body: thymeleaf.render(view, model),
