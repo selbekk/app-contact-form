@@ -6,6 +6,7 @@
   "scripts": {
     "build": "./gradlew build",
     "deploy": "./gradlew deploy",
+    "start": "$XP/bin/server.sh",
     "watch": "./gradlew deploy -t"
   },
   "author": "Kristofer Selbekk <selbeezy@gmail.com>",
