@@ -1,5 +1,29 @@
-<div class="cf-part-wrapper">
-    <form class="cf-part-form">
-
-    </form>
+<div class="cf-part">
+    <div class="cf-part-questions">
+        <h2 class="cf-part-title" th:text="${title}"></h2>
+        <form class="cf-part-form" th:action="${portal.serviceUrl()}" th:attr="data-emails=${emails}">
+            <div class="cf-part-input-group" th:each="field, iter : ${fields}" th:attr="data-label=${field.label}">
+                <label
+                    class="cf-part-input-label"
+                    th:for="'cf-part-input-' + ${iter.count}"
+                    th:if="${labelLayout} == 'labels'"
+                    th:text="${field.label}"></label>
+                <input
+                    th:if="${field.type} != 'textarea'"
+                    th:required="${field.required}"
+                    th:type="${field.type}"
+                    th:id="'cf-part-input' + ${iter.count}"
+                    th:attr="placeholder=${labelLayout} == 'placeholders' ? ${field.label}" />
+                <textarea
+                    th:if="${field.type} == 'textarea'"
+                    th:id="'cf-part-input' + ${iter.count}"
+                    th:attr="placeholder=${labelLayout} == 'placeholders' ? ${field.label}"
+                    ></textarea>
+            </div>
+            <div class="cf-part-input-group">
+                <button type="submit" th:text="${submitButton}"></button>
+            </div>
+        </form>
+    </div>
+    <div class="cf-part-success" th:utext="${successHtml}"></div>
 </div>

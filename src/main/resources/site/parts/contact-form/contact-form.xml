@@ -13,7 +13,7 @@
                     <label>Field label</label>
                     <occurrences minimum="1" maximum="1" />
                 </input>
-                <input name="label" type="ComboBox">
+                <input name="type" type="ComboBox">
                     <label>Field type</label>
                     <occurrences minimum="1" maximum="1" />
                     <config>
@@ -24,12 +24,18 @@
                     </config>
                     <default>text</default>
                 </input>
-                <input name="label" type="CheckBox">
+                <input name="required" type="CheckBox">
                     <label>Required?</label>
                     <occurrences minimum="0" maximum="1" />
                 </input>
             </items>
         </item-set>
+
+        <input name="submit-button" type="TextArea">
+            <label>Send button text</label>
+            <occurrences minimum="1" maximum="1" />
+            <default>Send</default>
+        </input>
 
         <input name="success-message" type="HtmlArea">
             <label>Success message</label>
@@ -37,7 +43,7 @@
             <default><h2>Thanks!</h2><p>We'll get back to you as soon as possible.</p></default>
         </input>
 
-        <input name="email" type="tag">
+        <input name="email-recipients" type="tag">
             <label>Email recipient(s)</label>
             <occurrences minimum="0" maximum="0"/>
         </input>
@@ -46,10 +52,10 @@
             <label>How should the fields be labelled?</label>
             <occurrences minimum="0" maximum="1"/>
             <config>
-                <option value="placeholder">Placeholders</option>
+                <option value="placeholders">Placeholders</option>
                 <option value="labels">Labels</option>
             </config>
-            <default>placeholder</default>
+            <default>placeholders</default>
         </input>
     </config>
 </part>
