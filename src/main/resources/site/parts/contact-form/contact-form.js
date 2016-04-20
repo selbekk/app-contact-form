@@ -17,8 +17,6 @@ exports.get = function() {
         successHtml: config['success-message']
     };
 
-    log.info(JSON.stringify(model, null, 4));
-
     return {
         body: thymeleaf.render(view, model),
         contentType: 'text/html'
