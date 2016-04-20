@@ -1,13 +1,14 @@
 {
-  "name": "your-app-name-here",
+  "name": "app-contact-form",
+  "private": true,
   "version": "0.0.1",
-  "description": "",
+  "description": "A contact form app for Enonic XP",
   "scripts": {
     "build": "./gradlew build",
     "deploy": "./gradlew deploy",
     "watch": "./gradlew deploy -t"
   },
-  "author": "",
+  "author": "Kristofer Selbekk <selbeezy@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.5.2",
