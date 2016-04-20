@@ -1,0 +1,55 @@
+<part>
+    <display-name>Contact form</display-name>
+    <config>
+        <input name="title" type="TextLine">
+            <label>Title</label>
+            <occurrences minimum="0" maximum="1" />
+        </input>
+        <item-set name="form-fields">
+            <label>Form field</label>
+            <occurrences minimum="0" maximum="0" />
+            <items>
+                <input name="label" type="TextArea">
+                    <label>Field label</label>
+                    <occurrences minimum="1" maximum="1" />
+                </input>
+                <input name="label" type="ComboBox">
+                    <label>Field type</label>
+                    <occurrences minimum="1" maximum="1" />
+                    <config>
+                        <option value="text">Text field</option>
+                        <option value="email">Email</option>
+                        <option value="tel">Telephone number</option>
+                        <option value="textarea">Text area</option>
+                    </config>
+                    <default>text</default>
+                </input>
+                <input name="label" type="CheckBox">
+                    <label>Required?</label>
+                    <occurrences minimum="0" maximum="1" />
+                </input>
+            </items>
+        </item-set>
+
+        <input name="success-message" type="HtmlArea">
+            <label>Success message</label>
+            <occurrences minimum="0" maximum="1" />
+            <default><h2>Thanks!</h2><p>We'll get back to you as soon as possible.</p></default>
+        </input>
+
+        <input name="email" type="tag">
+            <label>Email recipient(s)</label>
+            <occurrences minimum="0" maximum="0"/>
+        </input>
+
+        <input name="label-layout" type="RadioButton">
+            <label>How should the fields be labelled?</label>
+            <occurrences minimum="0" maximum="1"/>
+            <config>
+                <option value="placeholder">Placeholders</option>
+                <option value="labels">Labels</option>
+            </config>
+            <default>placeholder</default>
+        </input>
+    </config>
+</part>
