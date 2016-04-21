@@ -57,10 +57,12 @@
 	// Find all contact form parts
 	var $parts = [].concat(_toConsumableArray(document.querySelectorAll('.js-cf-part')));
 
-	// Include required styles
+	// Include required styles (if needed)
 	if ($parts.length) {
 	    __webpack_require__(3);
 	}
+
+	// TODO: Add any required themes (once implemented)
 
 	// Initiate all parts
 	$parts.forEach(function ($part) {
@@ -77,15 +79,61 @@
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	__webpack_require__(2);
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var ContactForm = function ContactForm($el) {
-	    _classCallCheck(this, ContactForm);
+	var ContactForm = function () {
+	    function ContactForm($el) {
+	        _classCallCheck(this, ContactForm);
 
-	    this.$el = $el;
-	};
+	        this.$el = $el;
+	        this.$form = this.$el.querySelector('form');
+
+	        this._handleSubmit = this._handleSubmit.bind(this);
+
+	        this._initEvents();
+	    }
+
+	    _createClass(ContactForm, [{
+	        key: '_initEvents',
+	        value: function _initEvents() {
+	            this.$form.addEventListener('submit', this._handleSubmit);
+	        }
+	    }, {
+	        key: '_handleSubmit',
+	        value: function _handleSubmit(e) {
+	            var _this = this;
+
+	            e.preventDefault();
+
+	            var fields = [].concat(_toConsumableArray(this.$form.querySelectorAll('.js-field'))).map(function ($field) {
+	                return {
+	                    key: $field.dataset.label,
+	                    value: $field.value.trim()
+	                };
+	            });
+
+	            var body = {
+	                fields: fields,
+	                emails: this.$form.dataset.emails
+	            };
+
+	            fetch(this.$form.action, { method: 'post', body: JSON.stringify(body) }).then(function () {
+	                _this.$el.querySelector('.cf-part-questions').classList.add('is-hidden');
+	                _this.$el.querySelector('.cf-part-success').classList.remove('is-hidden');
+	            }).catch(function () {
+	                console.log('error'); // TODO: Implement a view for this
+	            });
+	        }
+	    }]);
+
+	    return ContactForm;
+	}();
 
 	exports.default = ContactForm;
 
@@ -519,7 +567,7 @@
 
 
 	// module
-	exports.push([module.id, ".cf-part-success {\n    display: none;\n}\n", ""]);
+	exports.push([module.id, ".cf-part-section.is-hidden {\n    display: none;\n}\n", ""]);
 
 	// exports
 
